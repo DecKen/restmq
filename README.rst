@@ -26,8 +26,19 @@ This release is a cleanup of the original code, that can also be found on github
 Install
 =======
 
-$ python setup.py install
-run with bash start_scripts/restmq_server or taylor your own script. Note that currently restmq is presented as a twisted plugin. 
+::
+
+$ apt-get updata;apt-get install git curl python-pip redis-server libffi-dev python-dev -y libssl-dev
+$ git clone https://github.com/gleicon/restmq.git
+$ cd restmq
+$ pip install -e .
+$ cd start_scripts
+$ touch acl.conf
+$ vi restmq_server 
+change `"cd $SCRIPT_FOLDER; exec twistd -n restmq --acl /opt/restmq/etc/acl.conf $*"` to `"cd $SCRIPT_FOLDER; exec twistd -n restmq --acl acl.conf $*"`
+
+
+run with bash ./restmq_server or taylor your own script. Note that currently restmq is presented as a twisted plugin. 
 
 Queue Policy
 ============
